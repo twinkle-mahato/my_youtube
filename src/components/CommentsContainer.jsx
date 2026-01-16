@@ -84,13 +84,13 @@ const commentsData = [
 ];
 
 const Comment = ({ data }) => {
-  const { name, text } = data;
+  const { name, text, replies } = data;
   return (
-    <div className="flex gap-3 p-3 my-2 hover:bg-gray-50 rounded-lg">
-      <img alt="user" src={USER_ICON} className="w-10 h-10 rounded-full" />
-      <div>
-        <p className="font-semibold text-sm">{name}</p>
-        <p className="text-gray-700 text-sm">{text}</p>
+    <div className="flex shadow-sm bg-gray-100 p-2 rounded-lg my-3">
+      <img alt="user" src={USER_ICON} className="w-12 h-12 rounded-full" />
+      <div className="px-3">
+        <p className="font-semibold">{name}</p>
+        <p>{text}</p>
         <button className="text-xs text-blue-600 mt-1 hover:underline">
           Reply
         </button>
@@ -105,7 +105,7 @@ const CommentsList = ({ comments }) => {
       {/* for single comment */}
       <Comment data={comment} />
         {comment.replies.length > 0 && (
-      <div className="pl-6 ml-6 border-l border-gray-300">
+      <div className="pl-5 border-l border-black ml-5">
         {/* Replies */}
         <CommentsList comments={comment.replies} />
       </div>

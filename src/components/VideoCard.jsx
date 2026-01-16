@@ -7,16 +7,16 @@ const VideoCard = ({ info }) => {
   const { channelTitle, title, thumbnails } = snippet;
 
   return (
-    <div className="p-2 m-3 w-72 shadow-lg rounded-lg hover:bg-gray-100 cursor-pointer h-full flex flex-col">
+    <div className="p-2 m-3 w-72 shadow-lg rounded-lg hover:bg-gray-100 cursor-pointer h-full flex flex-col hover:scale-[1.02] transition-transform duration-200">
       <img
         alt="thumbnails"
         src={thumbnails?.high?.url}
-        className="rounded-lg w-full"
+        className="rounded-lg w-full aspect-video object-cover"
       />
-      <ul>
-        <li className="font-bold py-2">{title}</li>
+      <ul className="mt-2">
+        <li className="font-semibold text-sm line-clamp-2">{title}</li>
         <li className="text-gray-600 text-sm">{channelTitle}</li>
-        <li className="text-gray-500 text-sm">
+        <li className="text-gray-600 text-xs">
           {Number(statistics?.viewCount).toLocaleString()} views
         </li>
       </ul>
