@@ -18,7 +18,7 @@ const VideoConatiner = () => {
   }, []);
 
   return (
-    <div className="flex flex-wrap justify-center md:gap-4  md:p-4">
+    <div className="flex flex-wrap justify-center  gap-2 md:gap-4  md:p-4">
       {videos[0] && <AdVideoCard info={videos[0]} />}
       {videos.map((video) => (
         <Link key={video.id} to={"/watch?v=" + video.id}>
