@@ -3,94 +3,64 @@ import { USER_ICON } from "../utils/constants";
 
 const commentsData = [
   {
-    name: "Akshay Saini",
-    text: "This video explained recursion really well 🔥",
+    name: "User123",
+    text: "Great video 👍",
+    replies: [],
+  },
+  {
+    name: "Ankit",
+    text: "Really enjoyed watching this!",
     replies: [
       {
-        name: "Twinkle",
-        text: "Agree! The example made it super clear.",
-        replies: [
-          {
-            name: "Rohit",
-            text: "Same here. Took me a while to get it though 😅",
-            replies: [],
-          },
-        ],
+        name: "Riya",
+        text: "Same here 😊",
+        replies: [],
       },
     ],
   },
   {
-    name: "Neha Sharma",
-    text: "Can someone explain why we need keys in React?",
+    name: "Karan",
+    text: "Thanks for sharing 🙌",
+    replies: [],
+  },
+  {
+    name: "Priya",
+    text: "Very helpful and well explained 👌",
     replies: [
       {
-        name: "Akshay Saini",
-        text: "Keys help React identify which items changed.",
-        replies: [
-          {
-            name: "Rahul",
-            text: "Exactly, without keys React re-renders inefficiently.",
-            replies: [
-              {
-                name: "Neha Sharma",
-                text: "Got it now 👍 Thanks!",
-                replies: [],
-              },
-            ],
-          },
-        ],
+        name: "Creator",
+        text: "Glad it helped 🙂",
+        replies: [],
       },
     ],
   },
   {
-    name: "Aman Verma",
-    text: "Tailwind borders confused me at first 😐",
-    replies: [
-      {
-        name: "Pooja",
-        text: "Same! border-l needs width too.",
-        replies: [
-          {
-            name: "Aman Verma",
-            text: "Yeah border-l-2 finally fixed it.",
-            replies: [],
-          },
-        ],
-      },
-    ],
+    name: "Aman",
+    text: "Watching this again 🔁",
+    replies: [],
   },
   {
-    name: "Sneha Patel",
-    text: "Anyone building the YouTube clone along with this?",
-    replies: [
-      {
-        name: "Twinkle",
-        text: "Yes 🙋‍♀️ almost done with comments section!",
-        replies: [
-          {
-            name: "Sneha Patel",
-            text: "Nice! Drop the GitHub link when ready 🚀",
-            replies: [],
-          },
-        ],
-      },
-    ],
+    name: "Sneha",
+    text: "Quality content as always 🔥",
+    replies: [],
   },
   {
-    name: "Ravi Kumar",
-    text: "This comment has no replies but still should render clean.",
+    name: "Rahul",
+    text: "This deserves more views 🚀",
     replies: [],
   },
 ];
 
+
+
 const Comment = ({ data }) => {
-  const { name, text, replies } = data;
+  const { name, text} = data;
   return (
-    <div className="flex shadow-sm bg-gray-100 p-2 rounded-lg my-3">
-      <img alt="user" src={USER_ICON} className="w-12 h-12 rounded-full" />
+    <div className="flex shadow-sm md:p-2 rounded-lg my-3">
+      <img alt="user" src={USER_ICON} className="w-5 md:w-12 h-5 md:h-12 rounded-full" />
       <div className="px-3">
-        <p className="font-semibold">{name}</p>
-        <p>{text}</p>
+        <p className=" text-sm md:text-base font-semibold">{name}</p>
+        <p className="text-sm md:text-base">{text}</p>
         <button className="text-xs text-blue-600 mt-1 hover:underline">
           Reply
         </button>
@@ -105,7 +75,7 @@ const CommentsList = ({ comments }) => {
       {/* for single comment */}
       <Comment data={comment} />
         {comment.replies.length > 0 && (
-      <div className="pl-5 border-l border-black ml-5">
+      <div className=" pl-2 md:pl-5 border-l border-black ml-2 md:ml-5">
         {/* Replies */}
         <CommentsList comments={comment.replies} />
       </div>
@@ -116,8 +86,8 @@ const CommentsList = ({ comments }) => {
 
 const CommentsContainer = () => {
   return (
-    <div className="m-5 p-2">
-      <h1 className="text-2xl font-bold">Comments:</h1>
+    <div className="md:m-5 p-2">
+      <h1 className=" text-lg md:text-2xl font-bold">Comments:</h1>
       <CommentsList comments={commentsData} />
     </div>
   );

@@ -1,14 +1,17 @@
 import React, { useEffect, useState } from "react";
 import ChatMessage from "./ChatMessage";
 import { useDispatch, useSelector } from "react-redux";
-import { addMessage } from "../utils/chatslice";
+import { addMessage } from "../utils/chatSlice";
 import { generateRandomnames, makeRandomMessage } from "../utils/helper";
+import { useRef } from "react";
 
 const LiveChat = () => {
   const [liveMessage, setLiveMessage] = useState("");
   const dispatch = useDispatch();
 
   const chatMessages = useSelector((state) => state.chat.messages);
+
+    const chatEndRef = useRef(null);
 
   useEffect(() => {
     const i = setInterval(() => {
@@ -19,16 +22,20 @@ const LiveChat = () => {
         addMessage({
           name: generateRandomnames(),
           message: makeRandomMessage(20) + "🚀",
-        })
+        }),
       );
     }, 1500);
     return () => clearInterval(i);
-  }, []);
+  }, [dispatch]);
+
+    useEffect(() => {
+    chatEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  }, [chatMessages]);
 
   return (
     <>
       {/* Chat Messages */}
-      <div className="w-full h-[600px] ml-2 border border-black bg-white rounded-lg overflow-y-scroll flex flex-col-reverse scrollbar-hide">
+      <div className="w-full h-150 ml-2 border border-black bg-white rounded-lg overflow-y-scroll flex flex-col-reverse scrollbar-hide">
         <div>
           {chatMessages.map((chat, index) => (
             <ChatMessage key={index} name={chat.name} message={chat.message} />
@@ -41,18 +48,21 @@ const LiveChat = () => {
         className="flex items-center gap-2 p-2 border-t border-gray-300"
         onSubmit={(e) => {
           e.preventDefault();
-          console.log("ON Form Submit", liveMessage);
+          //console.log("ON Form Submit", liveMessage);
+
+          if (!liveMessage.trim()) return;
+
           dispatch(
             addMessage({
               name: "Akshay Saini",
               message: liveMessage,
-            })
+            }),
           );
           setLiveMessage("");
         }}
       >
         <input
-          className="w-[95%] px-3 py-1 border rounded-lg text-sm outline-none"
+          className="w-full px-3 py-2 border rounded-lg text-sm outline-none"
           type="text"
           placeholder="Chat..."
           value={liveMessage}
@@ -60,7 +70,7 @@ const LiveChat = () => {
             setLiveMessage(e.target.value);
           }}
         />
-        <button className="px-4 py-1 bg-blue-500 text-white rounded-lg text-sm">
+        <button className="px-6 py-2 bg-blue-500 text-white rounded-lg text-sm">
           Send
         </button>
       </form>
