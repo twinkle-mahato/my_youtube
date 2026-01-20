@@ -34,14 +34,14 @@ const ButtonList = () => {
     scrollRef.current.scrollBy({ left: 200, behavior: "smooth" });
   };
   return (
-    <div className="flex md:px-4 md:py-2 items-center relative">
+    <div className="flex px-2 md:px-4 md:py-2 items-center relative">
       {/* Left Arrow */}
-      <MdChevronLeft onClick={slideLeft} className=" text-sm md:text-3xl cursor-pointer" />
+      <MdChevronLeft onClick={slideLeft} className=" text-6xl md:text-3xl cursor-pointer" />
 
       {/* Buttons */}
       <div
         ref={scrollRef}
-        className="  text-sm md:text-base p-0.5 md:p-0 flex overflow-x-auto whitespace-nowrap scrollbar-hide"
+        className="text-sm md:text-base md:p-0 flex overflow-x-auto whitespace-nowrap scrollbar-hide"
       >
         {list.map((button) => (
           <Button key={button} name={button} />
@@ -50,7 +50,7 @@ const ButtonList = () => {
       {/* Right Arrow */}
       <MdChevronRight
         onClick={slideRight}
-        className=" text-sm md:text-3xl cursor-pointer"
+        className=" text-6xl md:text-3xl cursor-pointer"
       />
     </div>
   );

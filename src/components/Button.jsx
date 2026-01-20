@@ -3,7 +3,7 @@ import React from "react";
 const Button = ({ name }) => {
   return (
     <div>
-      <button className="px-5 py-2 m-2 font-medium bg-gray-200 rounded-lg  hover:bg-black hover:text-white text-md whitespace-nowrap cursor-pointer">
+      <button className=" px-3 md:px-5 py-1 md:py-2 m-2 font-medium bg-gray-200 rounded-lg  hover:bg-black hover:text-white text-md whitespace-nowrap cursor-pointer">
         {name}
       </button>
     </div>
